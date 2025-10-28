@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شاشة التطبيقات</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <!-- شريط الحالة -->
+            <div class="status-bar">
+                <div class="time" id="time">12:00</div>
+                <div class="battery">
+                    <span>100%</span>
+                    <span>🔋</span>
+                </div>
+            </div>
+
+            <!-- الشاشة الرئيسية - قائمة التطبيقات -->
+            <div class="home-screen" id="homeScreen">
+                <!-- الصفحة الأولى: التطبيقات -->
+                <div class="screen-page" id="page1">
+                    <div class="apps-grid">
+                        <!-- تطبيق 1: أبشر -->
+                        <div class="app-icon" onclick="openApp('absher')">
+                            <div class="icon-wrapper">
+                                <img src="images/absher.png.png" alt="أبشر">
+                            </div>
+                            <div class="app-name">أبشر</div>
+                        </div>
+
+                        <!-- تطبيق 2: صحتي -->
+                        <div class="app-icon" onclick="openApp('seha')">
+                            <div class="icon-wrapper">
+                                <img src="images/sehhaty.jpg" alt="صحتي"> 
+                            </div>
+                            <div class="app-name">صحتي</div>
+                        </div>
+
+                        <!-- تطبيق 3: توكلنا -->
+                        <div class="app-icon" onclick="openApp('tawakkalna')">
+                            <div class="icon-wrapper">
+                                <img src="images/tawaklna.png" alt="توكلنا"> 
+                            </div>
+                            <div class="app-name">توكلنا</div>
+                        </div>
+
+                        <!-- تطبيق 4: اعتماد -->
+                        <div class="app-icon" onclick="openApp('yaqoot')">
+                            <div class="icon-wrapper">
+                                <img src="images/Etimad.png" alt="اعتماد"> 
+                            </div>
+                            <div class="app-name">اعتماد</div>
+                        </div>
+
+                        <!-- تطبيق 5: المرور -->
+                        <div class="app-icon" onclick="openApp('muroor')">
+                            <div class="icon-wrapper">
+                                <img src="images/muroor.jpg" alt="المرور"> 
+                            </div>
+                            <div class="app-name">المرور</div>
+                        </div>
+
+                        <!-- تطبيق 6: بلدي -->
+                        <div class="app-icon" onclick="openApp('balady')">
+                            <div class="icon-wrapper">
+                                <img src="images/baldy.png" alt="بلدي"> 
+                            </div>
+                            <div class="app-name">بلدي</div>
+                        </div>
+
+                        <!-- تطبيق 7: درب -->
+                        <div class="app-icon" onclick="openApp('darb')">
+                            <div class="icon-wrapper">
+                                <img src="images/darb.png" alt="درب"> 
+                            </div>
+                            <div class="app-name">درب</div>
+                        </div>
+
+                        <!-- تطبيق 8: نفاذ -->
+                        <div class="app-icon" onclick="openApp('nafath')">
+                            <div class="icon-wrapper">
+                                <img src="images/Nafath.jpg" alt="نفاذ"> 
+                            </div>
+                            <div class="app-name">نفاذ</div>
+                        </div>
+                    </div>
+                    
+                    <!-- النقاط السفلية -->
+                    <div class="page-dots">
+                        <span class="dot active" onclick="goToPage(1)"></span>
+                        <span class="dot" onclick="goToPage(2)"></span>
+                    </div>
+                </div>
+
+                <!-- الصفحة الثانية: الويدجتات -->
+                <div class="screen-page" id="page2" style="display: none;">
+                   <div class="widgets-container">
+    <!-- ويدجت واحدة فقط -->
+    <div class="widget widget-1">
+        <!-- زر الترجمة -->
+        <button class="widget-lang-toggle" onclick="toggleWidgetLanguage()">
+            <span class="widget-lang-ar">中文</span>
+            <span class="widget-lang-zh" style="display: none;">العربية</span>
+        </button>
+        
+        <!-- المحتوى العربي -->
+        <div class="widget-content-ar">
+            <p>بدفعٍ من موجة التحول الرقمي، تمضي المملكة العربية السعودية نحو المستقبل بسرعة غير مسبوقة. في ظل رؤية 2030، لم يعد الابتكار حلمًا بعيد المنال، بل أصبح يتغلغل في كل تفصيل من تفاصيل الحياة اليومية. من النقل الذكي والتعليم عبر الإنترنت، إلى الخدمات الصحية والتبادل الثقافي، تُعيد التطبيقات السعودية تشكيل أسلوب حياة الناس، وفي هذه الأرض المفعمة بالحيوية، كل لمسة شاشة، وكل نقرة، هي خطوة نحو عصرٍ ذكيٍ جديد. مرحبًا بكم في عالم التطبيقات السعودية — حيث تلتقي الطبيعة بالمستقبل</p>
+        </div>
+        
+        <!-- المحتوى الصيني -->
+        <div class="widget-content-zh" style="display: none;">
+            <p>在数字化浪潮的推动下，沙特阿拉伯正以前所未有的速度迈向未来。在"愿景 2030"的指引下，创新不再是遥远的梦想，而是渗透到生活的每一个细节。从智慧出行、在线教育、健康服务，到文化互通与数字生态系统，沙特的应用正在重塑人们的生活方式。在这片充满活力的土地上，每一次触屏、每一个点击，都是迈向智能时代的脚步。欢迎来到"沙特应用"的世界，这里，自然与未来在此交汇。</p>
+        </div>
+    </div>
+</div>
+                    
+                    <!-- النقاط السفلية -->
+                    <div class="page-dots">
+                        <span class="dot" onclick="goToPage(1)"></span>
+                        <span class="dot active" onclick="goToPage(2)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق أبشر -->
+            <div class="app-page" id="absher" data-app="absher" style="background: url('images/absher_wall.png') center/cover no-repeat, linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/absher-logo.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">
+                    </div>                          
+                    <h1 class="app-title-ar"></h1>
+                    <h1 class="app-title-zh" style="display: none;">阿布舍尔</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('absher')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>منصة أبشر الإلكترونية هي إحدى الخدمات الرقمية المقدمة من وزارة الداخلية في المملكة العربية السعودية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> إصدار وتجديد وثائق السفر</li>
+                                <li><i class="fa fa-car" aria-hidden="true"></i> الاستعلام عن المخالفات المرورية</li>
+                                <li><i class="fa fa-users" aria-hidden="true"></i> خدمات الأحوال المدنية</li>
+                                <li><i class="fa fa-id-card" aria-hidden="true"></i> خدمات الجوازات والإقامات</li>
+                                <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> التوقيع الإلكتروني</li>
+                            </ul>
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>سريع وآمن</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>موثوق حكومياً</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                    <span>سهل الاستخدام</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"阿布舍尔"是沙特阿拉伯最重要的政府服务平台之一，提供超过280项电子服务，如更新护照、居留证、驾驶证，以及缴纳罚款和查询个人信息等。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> 更新护照和居留证</li>
+                                <li><i class="fa fa-car" aria-hidden="true"></i> 缴纳交通罚款</li>
+                                <li><i class="fa fa-users" aria-hidden="true"></i> 查询和管理个人信息</li>
+                                <li><i class="fa fa-id-card" aria-hidden="true"></i> 预约政府服务（如签证、驾驶证等）</li>
+                                <li><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 电子签名服务</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>快速安全</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>政府认证</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                    <span>易于使用</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق صحتي -->
+            <div class="app-page" id="seha" data-app="seha" style="background: url('images/sehaty-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/sehhaty-logo.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">
+                    </div>
+                    <h1 class="app-title-ar"></h1>
+                    <h1 class="app-title-zh" style="display: none;">我的健康</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('seha')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>تطبيق صحتي هو البوابة الرسمية للخدمات الصحية الإلكترونية في المملكة العربية السعودية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i> حجز المواعيد الطبية</li>
+                                <li><i class="fa fa-medkit" aria-hidden="true"></i> عرض سجل التطعيمات</li>
+                                <li><i class="fa fa-heartbeat" aria-hidden="true"></i> متابعة الحالة الصحية</li>
+                                <li><i class="fa fa-file-text" aria-hidden="true"></i> الوصفات الطبية الإلكترونية</li>
+                                <li><i class="fa fa-flask" aria-hidden="true"></i> نتائج الفحوصات المخبرية</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    <span>خصوصية تامة</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
+                                    <span>ربط بالمستشفيات</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                                    <span>متابعة دورية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"我的健康"应用提供健康档案、预约挂号、核酸检测结果、疫苗接种记录等服务，方便居民管理个人健康信息。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i> 预约医院或诊所</li>
+                                <li><i class="fa fa-medkit" aria-hidden="true"></i> 查看疫苗接种记录</li>
+                                <li><i class="fa fa-heartbeat" aria-hidden="true"></i> 查询检测和化验结果</li>
+                                <li><i class="fa fa-file-text" aria-hidden="true"></i> 获取健康咨询与证书</li>
+                                <li><i class="fa fa-flask" aria-hidden="true"></i> 管理个人健康档案</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    <span>完全隐私</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-hospital-o" aria-hidden="true"></i></span>
+                                    <span>连接医院</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-line-chart" aria-hidden="true"></i></span>
+                                    <span>定期跟踪</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق توكلنا -->
+            <div class="app-page" id="tawakkalna" data-app="tawakkalna" style="background: url('images/Untitled-design.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/tawaklna-logo.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">托卡拉纳</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('tawakkalna')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>تطبيق توكلنا هو التطبيق الرسمي المعتمد من وزارة الصحة السعودية للخدمات الصحية والأمنية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-id-badge" aria-hidden="true"></i> إصدار التصاريح الإلكترونية</li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i> خدمات تحديد المواقع</li>
+                                <li><i class="fa fa-id-card-o" aria-hidden="true"></i> الهوية الرقمية</li>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> التقارير الصحية</li>
+                                <li><i class="fa fa-road" aria-hidden="true"></i> التصاريح الخاصة بالتنقل</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                    <span>معتمد رسمياً</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    <span>آمن ومشفر</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>خدمات فورية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"托卡拉纳"应用最初用于防疫管理，现在已成为集成多项政府服务的平台，如数字身份证、健康状态、车辆和教育信息等。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-id-badge" aria-hidden="true"></i> 展示数字身份证和居留证</li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i> 查询健康状态与疫苗信息</li>
+                                <li><i class="fa fa-id-card-o" aria-hidden="true"></i> 提供数字身份服务</li>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> 管理个人官方文件</li>
+                                <li><i class="fa fa-road" aria-hidden="true"></i> 提供教育、车辆等综合服务</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                    <span>官方认证</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                    <span>安全加密</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>即时服务</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق اعتماد --> 
+            <div class="app-page" id="yaqoot" data-app="yaqoot" style="background: url('images/Etimad-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/Etimad.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">依提玛德</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('yaqoot')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>منصة اعتماد هي منصة إلكترونية حكومية موجهة للجهات الحكومية والشركات لإدارة الميزانيات والعقود والمدفوعات المالية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-briefcase" aria-hidden="true"></i> إدارة الميزانيات الحكومية</li>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> إدارة العقود والمشتريات</li>
+                                <li><i class="fa fa-credit-card" aria-hidden="true"></i> معالجة المدفوعات والتسويات</li>
+                                <li><i class="fa fa-bullhorn" aria-hidden="true"></i> نشر معلومات المناقصات</li>
+                                <li><i class="fa fa-line-chart" aria-hidden="true"></i> تحسين الكفاءة المالية</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                                    <span>منصة حكومية</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                    <span>شفافية مالية</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-rocket" aria-hidden="true"></i></span>
+                                    <span>كفاءة عالية</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"依提玛德"平台是面向政府机构和企业的电子财务平台，用于预算管理、合同审批和支付结算，提高政府财政效率。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-briefcase" aria-hidden="true"></i> 管理政府预算与合同</li>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> 审批和管理采购项目</li>
+                                <li><i class="fa fa-credit-card" aria-hidden="true"></i> 审批和支付项目款项</li>
+                                <li><i class="fa fa-bullhorn" aria-hidden="true"></i> 公布政府招标信息</li>
+                                <li><i class="fa fa-line-chart" aria-hidden="true"></i> 提升财政透明度与效率</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-university" aria-hidden="true"></i></span>
+                                    <span>政府平台</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                    <span>财务透明</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-rocket" aria-hidden="true"></i></span>
+                                    <span>高效管理</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق نفاذ -->
+            <div class="app-page" id="nafath" data-app="nafath" style="background: url('images/Nafath-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/Nafath_logo.svg.png" style="width: 160px; height: 160px; border-radius: 10px; margin-top: 50px;">  
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">纳法兹</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('nafath')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>«نفاذ» هو نظام الدخول الموحد للهوية الرقمية في السعودية، يتيح للمستخدم الدخول الآمن لجميع الخدمات الحكومية والخاصة بحساب واحد.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-sign-in" aria-hidden="true"></i> يوفر تسجيل دخول موحد للهوية الرقمية</li>
+                                <li><i class="fa fa-lock" aria-hidden="true"></i> يتيح الدخول الآمن إلى الخدمات الحكومية والخاصة</li>
+                                <li><i class="fa fa-user-circle" aria-hidden="true"></i> إدارة والتحقق من هوية المستخدم</li>
+                                <li><i class="fa fa-id-badge" aria-hidden="true"></i> يدعم الدخول عبر التعرف على الوجه أو رمز التحقق</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                    <span>دخول موحد</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>أمان عالي</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                                    <span>سهل الاستخدام</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"纳法兹"是沙特统一的数字身份登录系统，用户可以通过一个账户安全地访问所有政府和私营机构的电子服务。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-sign-in" aria-hidden="true"></i>提供统一的数字身份登录</li>
+                                <li><i class="fa fa-lock" aria-hidden="true"></i>安全访问政府和私营机构的电子服务</li>
+                                <li><i class="fa fa-user-circle" aria-hidden="true"></i>管理和验证用户身份信息</li>
+                                <li><i class="fa fa-id-badge" aria-hidden="true"></i> 支持面部识别和一次性验证码登录</li>
+                            </ul>
+    
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                    <span>统一登录</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>高度安全</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                                    <span>易于使用</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق المرور -->
+            <div class="app-page" id="muroor" data-app="muroor" style="background: url('images/muroor-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/muroor-logo.svg" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">  
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">交通管理</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('muroor')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>تطبيق «المرور السعودي» يقدم خدمات إلكترونية للمركبات، مثل الاستعلام عن المعلومات، وتجديد الرخصة، ودفع المخالفات بسهولة عبر الجوال.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-money" aria-hidden="true"></i> دفع المخالفات المرورية</li>
+                                <li><i class="fa fa-search" aria-hidden="true"></i> الاستعلام عن بيانات المركبة والرخصة</li>
+                                <li><i class="fa fa-refresh" aria-hidden="true"></i> تجديد رخصة القيادة إلكترونياً</li>
+                                <li><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> الإبلاغ عن الحوادث أو المخالفات</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>سريع وسهل</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>آمن ومحمي</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                    <span>خدمات متكاملة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"交通管理"应用提供车辆信息查询、罚款缴纳、驾驶证续期等服务，方便用户线上办理交通业务。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-money" aria-hidden="true"></i> 缴纳交通罚款</li>
+                                <li><i class="fa fa-search" aria-hidden="true"></i> 查询驾驶证与车辆信息</li>
+                                <li><i class="fa fa-refresh" aria-hidden="true"></i> 续期驾驶执照</li>
+                                <li><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> 报告交通事故或违规</li>
+                            </ul>
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-bolt" aria-hidden="true"></i></span>
+                                    <span>快速简便</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-shield" aria-hidden="true"></i></span>
+                                    <span>安全可靠</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-check-circle" aria-hidden="true"></i></span>
+                                    <span>服务全面</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق بلدي -->
+            <div class="app-page" id="balady" data-app="balady" style="background: url('images/baldy-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/baldy-logo.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">                     
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">巴拉迪</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('balady')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>«بلدي» منصة خدمية تتيح للمواطنين والمقيمين التقديم على تصاريح الأنشطة، والإبلاغ عن المخالفات، والتعرف على الخدمات البلدية في المدن السعودية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> التقديم على الرخص التجارية والبلدية</li>
+                                <li><i class="fa fa-exclamation-circle" aria-hidden="true"></i> الإبلاغ عن المخالفات أو الأعطال في المدينة</li>
+                                <li><i class="fa fa-map-o" aria-hidden="true"></i> التعرف على الخدمات البلدية عبر الخرائط</li>
+                                <li><i class="fa fa-comments-o" aria-hidden="true"></i> تقديم الملاحظات والاقتراحات للبلديات</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+                                    <span>خدمات بلدية</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                    <span>سهل الوصول</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                    <span>استجابة سريعة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"巴拉迪"是城市服务平台，提供商业许可申请、违规举报、城市地图查询等服务，方便市民参与城市管理。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-file-text-o" aria-hidden="true"></i> 申请商业执照</li>
+                                <li><i class="fa fa-exclamation-circle" aria-hidden="true"></i> 举报城市违规或问题</li>
+                                <li><i class="fa fa-map-o" aria-hidden="true"></i>查询城市服务与地图</li>
+                                <li><i class="fa fa-comments-o" aria-hidden="true"></i>提交市政建议或请求</li>
+                            </ul>                            
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-building-o" aria-hidden="true"></i></span>
+                                    <span>市政服务</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+                                    <span>便捷访问</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></span>
+                                    <span>快速响应</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة تطبيق درب -->
+            <div class="app-page" id="darb" data-app="darb" style="background: url('images/darb-wall.png')">
+                <div class="app-header">
+                    <div class="app-header-icon">
+                        <img src="images/darb-logo.png" style="width: 180px; height: 180px; border-radius: 20px; margin-top: 20px;">  
+                    </div>
+                    <h1 class="app-title-zh" style="display: none;">达尔布</h1>
+                    <button class="lang-toggle" onclick="toggleLanguage('darb')">
+                        <span class="lang-ar">中文</span>
+                        <span class="lang-zh" style="display: none;">العربية</span>
+                    </button>
+                </div>
+                <div class="app-content">
+                    <div class="app-description">
+                        <!-- المحتوى العربي -->
+                        <div class="content-ar">
+                            <h2>عن التطبيق</h2>
+                            <p>«درب» تطبيق للنقل والخدمات المرورية، يتيح معرفة حالة الطرق، ودفع رسوم البوابات، وخدمات المواقف والخرائط الذكية.</p>
+                            
+                            <h3>الخدمات المتوفرة:</h3>
+                            <ul>
+                                <li><i class="fa fa-credit-card" aria-hidden="true"></i> دفع رسوم الطرق (البوابات الذكية)</li>
+                                <li><i class="fa fa-bar-chart" aria-hidden="true"></i> متابعة حالة المرور لحظة بلحظة</li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i> العثور على المواقف ودفع رسومها إلكترونياً</li>
+                                <li><i class="fa fa-map" aria-hidden="true"></i> عرض خرائط الطرق وخطط التنقل</li>
+                            </ul>
+
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-road" aria-hidden="true"></i></span>
+                                    <span>خدمات طرق</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                                    <span>معلومات فورية</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                                    <span>دفع ذكي</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- المحتوى الصيني -->
+                        <div class="content-zh" style="display: none;">
+                            <h2>关于应用</h2>
+                            <p>"达尔布"是交通与出行服务应用，提供电子收费、公路信息、停车服务和实时交通状况查询。</p>
+                            
+                            <h3>可用服务：</h3>
+                            <ul>
+                                <li><i class="fa fa-credit-card" aria-hidden="true"></i> 缴纳道路收费（电子通行费）</li>
+                                <li><i class="fa fa-bar-chart" aria-hidden="true"></i> 查询实时交通状况</li>
+                                <li><i class="fa fa-map-marker" aria-hidden="true"></i>查找停车位与支付费用</li>
+                                <li><i class="fa fa-map" aria-hidden="true"></i>查看道路地图与出行路线</li>
+                            </ul>                           
+                            <div class="app-features">
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-road" aria-hidden="true"></i></span>
+                                    <span>道路服务</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                                    <span>实时信息</span>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-icon"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                                    <span>智能支付</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-indicator"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
