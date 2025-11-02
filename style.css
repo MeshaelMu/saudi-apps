@@ -29,14 +29,14 @@ body {
 
 .phone-container {
     width: 320px;
-    height: 650px;  /* غيرناها من 600px إلى 650px */
+    height: 600px;  /* رجعناها 600px */
     background: #1a1a1a;
     border-radius: 40px;
     padding: 18px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
-    margin-top: 60px;  /* غيرناها من 50px إلى 60px */
+    margin-top: 50px;  /* رجعناها 50px */
 }
 .phone-screen {
     width: 100%;
@@ -114,7 +114,7 @@ body {
 
 /* صفحات التطبيقات */
 .app-page {
-    position: absolute;
+     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -127,8 +127,8 @@ body {
     transition: all 0.3s ease;
     overflow-y: auto;
     overflow-x: hidden;
-    display: none;
-    z-index: 10;
+    overscroll-behavior: contain;  /* أضف هالسطر */
+    -webkit-overflow-scrolling: touch;  /* أضف هالسطر */
 }
 
 .app-page.active {
