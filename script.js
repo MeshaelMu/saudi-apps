@@ -104,6 +104,7 @@ phoneScreen.addEventListener('touchstart', (e) => {
 });
 
 phoneScreen.addEventListener('touchmove', (e) => {
+    // التعامل مع السوايب داخل التطبيقات
     if (currentApp && isSwipeGesture) {
         const touch = e.changedTouches[0];
         const currentY = touch.clientY;
@@ -112,26 +113,28 @@ phoneScreen.addEventListener('touchmove', (e) => {
         if (distance < -30) {
             e.preventDefault();
         }
-    } else if (!isDragging || currentApp) {
         return;
     }
     
-    if (!currentApp) {
+    // التعامل مع السوايب بين الصفحات
+    if (isDragging && !currentApp) {
         const currentX = e.touches[0].clientX;
         const diff = startX - currentX;
         
-        if (Math.abs(diff) > 50) {
+        // سوايب أسهل - مسافة أقصر
+        if (Math.abs(diff) > 40) {
             if (diff > 0 && currentPage === 1) {
+                // سوايب لليسار → الصفحة الثانية
                 goToPage(2);
                 isDragging = false;
             } else if (diff < 0 && currentPage === 2) {
+                // سوايب لليمين → الصفحة الأولى
                 goToPage(1);
                 isDragging = false;
             }
         }
     }
 });
-
 phoneScreen.addEventListener('touchend', (e) => {
     if (currentApp && isSwipeGesture) {
         touchEndY = e.changedTouches[0].clientY;
@@ -302,3 +305,4 @@ function toggleWidgetLanguage() {
         langZh.style.display = 'none';
     }
 }
+
