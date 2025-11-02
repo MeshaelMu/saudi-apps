@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: '指尖上的沙特';
+    position: fixed;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: #000;
+    z-index: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.phone-container {
+    width: 280px;  /* ✏️ غيرناها */
+    height: 550px;  /* ✏️ غيرناها */
+    background: #1a1a1a;
+    border-radius: 40px;
+    padding: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px;  /* رجعناها 50px */
+}
+.phone-screen {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #0f0f0f 0%, #1a1a1a 100%);
+    border-radius: 30px;
+    position: relative;
+}
+
+.status-bar {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 12px;
+    z-index: 100;
+}
+
+.time {
+    font-weight: bold;
+}
+
+.battery {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+    padding: 45px 8px 20px;
+    justify-items: center;
+}
+/* الشاشة الرئيسية */
+.home-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.home-screen.hide {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+/* الصفحات داخل الشاشة الرئيسية */
+.screen-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url('images/wallpaper.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* الصفحة الثانية - خلفية */
+#page2 {
+    background: url('images/wallpaper.jpg') center/cover no-repeat !important;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* صفحات التطبيقات */
+.app-page {
+     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #1a1a1a 0%, #0f0f0f 100%);
+    border-radius: 30px;
+    padding: 60px 20px 20px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;  /* أضف هالسطر */
+    -webkit-overflow-scrolling: touch;  /* أضف هالسطر */
+}
+
+.app-page.active {
+    display: block;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* رأس التطبيق */
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+.app-header-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.app-header h1 {
+    color: white;
+    font-size: 28px;
+    margin: 0;
+}
+
+/* زر تغيير اللغة */
+.lang-toggle {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.lang-toggle:active {
+    transform: scale(0.95);
+}
+
+/* محتوى التطبيق */
+.app-content {
+    color: white;
+}
+
+.app-description h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.app-description h3 {
+    font-size: 16px;
+    margin: 25px 0 15px 0;
+    color: #fff;
+}
+
+.app-description p {
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.app-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.app-description ul li {
+    padding: 12px 15px;
+    background: rgba(0, 0, 0, 0.4);
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.app-description ul li:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateX(-5px);
+}
+
+/* مميزات التطبيق */
+.app-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.feature {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px 10px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.feature:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.feature span:last-child {
+    font-size: 11px;
+    color: #fff;
+}
+
+/* مؤشر السحب */
+.swipe-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.app-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.app-icon:active {
+    transform: scale(0.95);
+}
+
+.icon-wrapper {
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+.icon-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.app-icon:hover .icon-wrapper {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ألوان التطبيقات */
+.app-icon:nth-child(1) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(2) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(3) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(4) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(5) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(6) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(7) .icon-wrapper {
+    background: #fff;
+}
+
+.app-icon:nth-child(8) .icon-wrapper {
+    background: #fff;
+}
+
+.app-name {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    max-width: 70px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.home-indicator {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+}
+
+/* مسافة بين الأيقونة والنص */
+.app-description ul li i {
+    margin-left: 10px;
+}
+
+/* تغيير اتجاه المحتوى للغة الصينية */
+.content-zh {
+    direction: ltr;
+    text-align: left;
+}
+
+.content-zh ul {
+    text-align: left;
+}
+
+.content-zh ul li {
+    text-align: left;
+}
+
+.content-zh h2,
+.content-zh h3,
+.content-zh p {
+    text-align: left;
+}
+
+/* تعديل موضع الأيقونة في اللغة الصينية */
+.content-zh ul li i {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+/* نص أسود لتطبيق درب */
+#darb .app-description h2,
+#darb .app-description h3,
+#darb .app-description p,
+#darb .app-description ul li,
+#darb .app-features .feature span {
+    color: #000 !important;
+}
+
+/* زر اللغة أسود في تطبيق درب */
+#darb .lang-toggle {
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    color: #fff;
+}
+
+#darb .lang-toggle:hover {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* العنوان أسود في تطبيق درب */
+#darb .app-header h1 {
+    color: #000 !important;
+}
+
+/* حاوية الويدجتات */
+.widgets-container {
+    padding: 60px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* الويدجت */
+.widget {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 45px 20px 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    min-height: auto;
+}
+
+.widget p {
+    color: white;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* زر الترجمة في الويدجت */
+.widget-lang-toggle {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.widget-lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+.widget-lang-toggle:active {
+    transform: scale(0.95);
+}
+
+/* المحتوى العربي */
+.widget-content-ar p {
+    text-align: right;
+    direction: rtl;
+}
+
+/* المحتوى الصيني */
+.widget-content-zh p {
+    text-align: left;
+    direction: ltr;
+}
+/* النقاط السفلية */
+.page-dots {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+/* تصميم responsive للجوال */
+@media only screen and (max-width: 768px) {
+    body {
+        padding: 5px;
+        align-items: flex-start;
+        padding-top: 35px;
+    }
+    
+    body::before {
+        font-size: 24px;
+        top: 5px;
+    }
+    
+    .phone-container {
+        width: 90vw;  /* ✏️ غيرناها */
+        max-width: 360px;  /* ✏️ غيرناها */
+        height: auto;
+        min-height: 85vh;
+        margin-top: 40px;
+        transform: none;
+        border: 2px solid #2d2d2d;
+    }
+    
+    .phone-screen {
+        height: 100%;
+        min-height: 75vh;
+    }
+}
