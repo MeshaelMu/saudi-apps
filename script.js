@@ -36,21 +36,27 @@ function openApp(appId) {
             appPage.classList.add('active');
             currentApp = appId;
             
-            // إضافة شريط الخروج
-            if (!appPage.querySelector('.app-home-indicator')) {
-                const homeIndicator = document.createElement('div');
-                homeIndicator.className = 'app-home-indicator';
-                homeIndicator.onclick = goHome;
-                appPage.appendChild(homeIndicator);
-            }
-            
             // إضافة زر X للإغلاق
             if (!appPage.querySelector('.app-close-btn')) {
                 const closeBtn = document.createElement('div');
                 closeBtn.className = 'app-close-btn';
-                closeBtn.innerHTML = '✕';
-                closeBtn.onclick = goHome;
+                closeBtn.innerHTML = '×';
+                closeBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    goHome();
+                };
                 appPage.appendChild(closeBtn);
+            }
+            
+            // إضافة شريط الخروج
+            if (!appPage.querySelector('.app-home-indicator')) {
+                const homeIndicator = document.createElement('div');
+                homeIndicator.className = 'app-home-indicator';
+                homeIndicator.onclick = function(e) {
+                    e.stopPropagation();
+                    goHome();
+                };
+                appPage.appendChild(homeIndicator);
             }
         }, 100);
     }
@@ -67,7 +73,6 @@ function goHome() {
         setTimeout(() => {
             homeScreen.classList.remove('hide');
             currentApp = null;
-            // إعادة تعيين المتغيرات
             touchStartY = 0;
             touchEndY = 0;
             isSwipeGesture = false;
@@ -84,14 +89,12 @@ phoneScreen.addEventListener('touchstart', (e) => {
         swipeStartTime = Date.now();
         isSwipeGesture = false;
         
-        // تحديد إذا البداية من أسفل الشاشة
         const phoneContainer = document.querySelector('.phone-container');
         const containerRect = phoneContainer.getBoundingClientRect();
         const relativeY = touch.clientY - containerRect.top;
         const containerHeight = containerRect.height;
         
-        // لازم يبدأ من آخر 20% من الشاشة
-        if (relativeY > containerHeight * 0.75) {
+        if (relativeY > containerHeight * 0.70) {
             isSwipeGesture = true;
         }
     } else {
@@ -106,7 +109,6 @@ phoneScreen.addEventListener('touchmove', (e) => {
         const currentY = touch.clientY;
         const distance = currentY - touchStartY;
         
-        // إذا سحب لفوق مسافة كافية، امنع السكرول
         if (distance < -30) {
             e.preventDefault();
         }
@@ -151,7 +153,7 @@ phoneScreen.addEventListener('mousedown', (e) => {
         const relativeY = e.clientY - containerRect.top;
         const containerHeight = containerRect.height;
         
-        if (relativeY > containerHeight * 0.75) {
+        if (relativeY > containerHeight * 0.70) {
             isSwipeGesture = true;
         }
     } else {
@@ -185,7 +187,7 @@ phoneScreen.addEventListener('mouseup', (e) => {
     isSwipeGesture = false;
 });
 
-// معالجة حركة السحب - محسّن ومحدث
+// معالجة حركة السحب
 function handleSwipe() {
     if (!currentApp || !isSwipeGesture) return;
     
@@ -193,14 +195,10 @@ function handleSwipe() {
     const swipeTime = Date.now() - swipeStartTime;
     const swipeVelocity = Math.abs(swipeDistance) / swipeTime;
     
-    // الشروط المخففة للخروج:
-    // 1. المسافة أكثر من 70 بكسل لفوق
-    // 2. السرعة كافية أو المسافة طويلة جداً
-    if (swipeDistance < -70 && (swipeVelocity > 0.2 || swipeDistance < -120)) {
+    if (swipeDistance < -60 && (swipeVelocity > 0.2 || swipeDistance < -100)) {
         goHome();
     }
     
-    // إعادة تعيين
     isSwipeGesture = false;
 }
 
@@ -213,7 +211,6 @@ appPages.forEach(appPage => {
     appPage.addEventListener('scroll', (e) => {
         const scrollTop = appPage.scrollTop;
         if (scrollTop > lastScrollTop) {
-            // يسكرول لتحت - امنع السوايب
             touchStartY = 0;
             touchEndY = 0;
             isSwipeGesture = false;
@@ -294,17 +291,14 @@ function toggleWidgetLanguage() {
     const langZh = widget.querySelector('.widget-lang-zh');
     
     if (contentAr.style.display !== 'none') {
-        // تحويل للصيني
         contentAr.style.display = 'none';
         contentZh.style.display = 'block';
         langAr.style.display = 'none';
         langZh.style.display = 'inline';
     } else {
-        // تحويل للعربي
         contentAr.style.display = 'block';
         contentZh.style.display = 'none';
         langAr.style.display = 'inline';
         langZh.style.display = 'none';
     }
 }
-
