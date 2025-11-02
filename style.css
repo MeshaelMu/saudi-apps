@@ -545,6 +545,34 @@ body {
 .dot:hover {
     background: rgba(255, 255, 255, 0.7);
 }
+/* زر الإغلاق في التطبيقات */
+.app-close-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.app-close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.app-close-btn:active {
+    transform: scale(0.95);
+}
 /* تصميم responsive للجوال */
 /* تصميم responsive للجوال */
 @media only screen and (max-width: 768px) {
@@ -623,3 +651,4 @@ body {
         max-height: 68vh;
     }
 }
+
