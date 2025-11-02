@@ -35,6 +35,14 @@ function openApp(appId) {
         setTimeout(() => {
             appPage.classList.add('active');
             currentApp = appId;
+            
+            // إضافة شريط الخروج
+            if (!appPage.querySelector('.app-home-indicator')) {
+                const homeIndicator = document.createElement('div');
+                homeIndicator.className = 'app-home-indicator';
+                homeIndicator.onclick = goHome;
+                appPage.appendChild(homeIndicator);
+            }
         }, 100);
     }
 }
