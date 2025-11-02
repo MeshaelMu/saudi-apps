@@ -82,7 +82,7 @@ phoneScreen.addEventListener('touchstart', (e) => {
         const containerHeight = containerRect.height;
         
         // لازم يبدأ من آخر 20% من الشاشة
-        if (relativeY > containerHeight * 0.80) {
+        if (relativeY > containerHeight * 0.75) {
             isSwipeGesture = true;
         }
     } else {
@@ -98,7 +98,7 @@ phoneScreen.addEventListener('touchmove', (e) => {
         const distance = currentY - touchStartY;
         
         // إذا سحب لفوق مسافة كافية، امنع السكرول
-        if (distance < -50) {
+        if (distance < -30) {
             e.preventDefault();
         }
     } else if (!isDragging || currentApp) {
@@ -142,7 +142,7 @@ phoneScreen.addEventListener('mousedown', (e) => {
         const relativeY = e.clientY - containerRect.top;
         const containerHeight = containerRect.height;
         
-        if (relativeY > containerHeight * 0.80) {
+        if (relativeY > containerHeight * 0.75) {
             isSwipeGesture = true;
         }
     } else {
@@ -184,11 +184,10 @@ function handleSwipe() {
     const swipeTime = Date.now() - swipeStartTime;
     const swipeVelocity = Math.abs(swipeDistance) / swipeTime;
     
-    // الشروط:
-    // 1. المسافة أكثر من 100 بكسل لفوق
-    // 2. السرعة كافية (حركة سريعة)
-    // 3. الوقت أقل من 500ms (نصف ثانية)
-    if (swipeDistance < -100 && swipeVelocity > 0.3 && swipeTime < 500) {
+    // الشروط المخففة للخروج:
+    // 1. المسافة أكثر من 70 بكسل لفوق
+    // 2. السرعة كافية أو المسافة طويلة جداً
+    if (swipeDistance < -70 && (swipeVelocity > 0.2 || swipeDistance < -120)) {
         goHome();
     }
     
