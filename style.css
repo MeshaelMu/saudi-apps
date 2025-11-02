@@ -368,7 +368,30 @@ body {
     background: rgba(255, 255, 255, 0.3);
     border-radius: 2px;
 }
+/* شريط الخروج داخل التطبيقات */
+.app-home-indicator {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 1000;
+}
 
+.app-home-indicator:hover {
+    background: rgba(255, 255, 255, 0.9);
+    height: 6px;
+}
+
+.app-home-indicator:active {
+    background: white;
+    transform: translateX(-50%) scale(0.95);
+}
 /* مسافة بين الأيقونة والنص */
 .app-description ul li i {
     margin-left: 10px;
