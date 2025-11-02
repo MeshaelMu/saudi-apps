@@ -13,6 +13,8 @@ setInterval(updateTime, 1000);
 let touchStartY = 0;
 let touchEndY = 0;
 let currentApp = null;
+let isSwipeGesture = false;
+let swipeStartTime = 0;
 
 // متغيرات السوايب بين الصفحات
 let currentPage = 1;
@@ -51,6 +53,7 @@ function goHome() {
             // إعادة تعيين المتغيرات
             touchStartY = 0;
             touchEndY = 0;
+            isSwipeGesture = false;
         }, 100);
     }
 }
@@ -59,7 +62,21 @@ const phoneScreen = document.querySelector('.phone-screen');
 
 phoneScreen.addEventListener('touchstart', (e) => {
     if (currentApp) {
-        touchStartY = e.changedTouches[0].screenY;
+        const touch = e.changedTouches[0];
+        touchStartY = touch.clientY;
+        swipeStartTime = Date.now();
+        isSwipeGesture = false;
+        
+        // تحديد إذا البداية من أسفل الشاشة
+        const phoneContainer = document.querySelector('.phone-container');
+        const containerRect = phoneContainer.getBoundingClientRect();
+        const relativeY = touch.clientY - containerRect.top;
+        const containerHeight = containerRect.height;
+        
+        // لازم يبدأ من آخر 20% من الشاشة
+        if (relativeY > containerHeight * 0.80) {
+            isSwipeGesture = true;
+        }
     } else {
         startX = e.touches[0].clientX;
         isDragging = true;
@@ -67,33 +84,59 @@ phoneScreen.addEventListener('touchstart', (e) => {
 });
 
 phoneScreen.addEventListener('touchmove', (e) => {
-    if (!isDragging || currentApp) return;
-    const currentX = e.touches[0].clientX;
-    const diff = startX - currentX;
+    if (currentApp && isSwipeGesture) {
+        const touch = e.changedTouches[0];
+        const currentY = touch.clientY;
+        const distance = currentY - touchStartY;
+        
+        // إذا سحب لفوق مسافة كافية، امنع السكرول
+        if (distance < -50) {
+            e.preventDefault();
+        }
+    } else if (!isDragging || currentApp) {
+        return;
+    }
     
-    if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentPage === 1) {
-            goToPage(2);
-            isDragging = false;
-        } else if (diff < 0 && currentPage === 2) {
-            goToPage(1);
-            isDragging = false;
+    if (!currentApp) {
+        const currentX = e.touches[0].clientX;
+        const diff = startX - currentX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0 && currentPage === 1) {
+                goToPage(2);
+                isDragging = false;
+            } else if (diff < 0 && currentPage === 2) {
+                goToPage(1);
+                isDragging = false;
+            }
         }
     }
 });
 
 phoneScreen.addEventListener('touchend', (e) => {
-    if (currentApp) {
-        touchEndY = e.changedTouches[0].screenY;
+    if (currentApp && isSwipeGesture) {
+        touchEndY = e.changedTouches[0].clientY;
         handleSwipe();
     }
     isDragging = false;
+    isSwipeGesture = false;
 });
 
 // للكمبيوتر (Mouse)
 phoneScreen.addEventListener('mousedown', (e) => {
     if (currentApp) {
-        touchStartY = e.screenY;
+        touchStartY = e.clientY;
+        swipeStartTime = Date.now();
+        isSwipeGesture = false;
+        
+        const phoneContainer = document.querySelector('.phone-container');
+        const containerRect = phoneContainer.getBoundingClientRect();
+        const relativeY = e.clientY - containerRect.top;
+        const containerHeight = containerRect.height;
+        
+        if (relativeY > containerHeight * 0.80) {
+            isSwipeGesture = true;
+        }
     } else {
         startX = e.clientX;
         isDragging = true;
@@ -117,26 +160,32 @@ phoneScreen.addEventListener('mousemove', (e) => {
 });
 
 phoneScreen.addEventListener('mouseup', (e) => {
-    if (currentApp) {
-        touchEndY = e.screenY;
+    if (currentApp && isSwipeGesture) {
+        touchEndY = e.clientY;
         handleSwipe();
     }
     isDragging = false;
+    isSwipeGesture = false;
 });
 
-// معالجة حركة السحب - محسّن
+// معالجة حركة السحب - محسّن ومحدث
 function handleSwipe() {
-    if (currentApp) {
-        const swipeDistance = touchStartY - touchEndY;
-        const screenHeight = window.innerHeight;
-        const isFromBottom = touchStartY > (screenHeight * 0.85);
-        
-        // السحب لازم يكون من تحت الشاشة ولفوق بمسافة طويلة
-        // وليس للأسفل (scroll)
-        if (isFromBottom && swipeDistance < -200) {
-            goHome();
-        }
+    if (!currentApp || !isSwipeGesture) return;
+    
+    const swipeDistance = touchStartY - touchEndY;
+    const swipeTime = Date.now() - swipeStartTime;
+    const swipeVelocity = Math.abs(swipeDistance) / swipeTime;
+    
+    // الشروط:
+    // 1. المسافة أكثر من 100 بكسل لفوق
+    // 2. السرعة كافية (حركة سريعة)
+    // 3. الوقت أقل من 500ms (نصف ثانية)
+    if (swipeDistance < -100 && swipeVelocity > 0.3 && swipeTime < 500) {
+        goHome();
     }
+    
+    // إعادة تعيين
+    isSwipeGesture = false;
 }
 
 // منع السكرول من إغلاق التطبيق
@@ -151,6 +200,7 @@ appPages.forEach(appPage => {
             // يسكرول لتحت - امنع السوايب
             touchStartY = 0;
             touchEndY = 0;
+            isSwipeGesture = false;
         }
         lastScrollTop = scrollTop;
     });
