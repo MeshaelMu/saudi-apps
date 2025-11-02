@@ -28,8 +28,8 @@ body {
 }
 
 .phone-container {
-    width: 320px;
-    height: 600px;  /* رجعناها 600px */
+    width: 280px;  /* ✏️ غيرناها */
+    height: 550px;  /* ✏️ غيرناها */
     background: #1a1a1a;
     border-radius: 40px;
     padding: 18px;
@@ -533,8 +533,8 @@ body {
     }
     
     .phone-container {
-        width: 95vw;
-        max-width: 400px;
+        width: 90vw;  /* ✏️ غيرناها */
+        max-width: 360px;  /* ✏️ غيرناها */
         height: auto;
         min-height: 85vh;
         margin-top: 40px;
