@@ -43,6 +43,15 @@ function openApp(appId) {
                 homeIndicator.onclick = goHome;
                 appPage.appendChild(homeIndicator);
             }
+            
+            // إضافة زر X للإغلاق
+            if (!appPage.querySelector('.app-close-btn')) {
+                const closeBtn = document.createElement('div');
+                closeBtn.className = 'app-close-btn';
+                closeBtn.innerHTML = '✕';
+                closeBtn.onclick = goHome;
+                appPage.appendChild(closeBtn);
+            }
         }, 100);
     }
 }
@@ -298,3 +307,4 @@ function toggleWidgetLanguage() {
         langZh.style.display = 'none';
     }
 }
+
