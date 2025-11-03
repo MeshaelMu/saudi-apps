@@ -589,7 +589,6 @@ body {
 /* تطبيق المحفظة - خلفية سوداء */
 #wallet {
   padding-top: 30px !important;            /* يرفع صفحة المحفظة كلها */
-    overflow-y: hidden !important;
 
 }
 #wallet .wallet-card-item p {
@@ -808,3 +807,4 @@ body {
         max-height: 68vh;
     }
 }
+
