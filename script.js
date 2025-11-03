@@ -49,15 +49,15 @@ function openApp(appId) {
             }
             
             // إضافة شريط الخروج
-            if (!appPage.querySelector('.app-home-indicator')) {
-                const homeIndicator = document.createElement('div');
-                homeIndicator.className = 'app-home-indicator';
-                homeIndicator.onclick = function(e) {
-                    e.stopPropagation();
-                    goHome();
-                };
-                appPage.appendChild(homeIndicator);
-            }
+            // if (!appPage.querySelector('.app-home-indicator')) {
+            //     const homeIndicator = document.createElement('div');
+            //     homeIndicator.className = 'app-home-indicator';
+            //     homeIndicator.onclick = function(e) {
+            //         e.stopPropagation();
+            //         goHome();
+            //     };
+            //     appPage.appendChild(homeIndicator);
+            // }
         }, 100);
     }
 }
@@ -135,6 +135,7 @@ phoneScreen.addEventListener('touchmove', (e) => {
         }
     }
 });
+
 phoneScreen.addEventListener('touchend', (e) => {
     if (currentApp && isSwipeGesture) {
         touchEndY = e.changedTouches[0].clientY;
@@ -305,4 +306,3 @@ function toggleWidgetLanguage() {
         langZh.style.display = 'none';
     }
 }
-
