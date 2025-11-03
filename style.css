@@ -807,4 +807,25 @@ body {
         max-height: 68vh;
     }
 }
+/* يجعل الكروت بس هي اللي تسكرول وتثبت الهيدر */
+@media (max-width: 768px) {
+  /* تأكيد أن الهيدر ثابت داخل صفحة المحفظة */
+  #wallet .wallet-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: linear-gradient(to bottom, rgba(26,26,26,0.95), rgba(26,26,26,0));
+    backdrop-filter: blur(6px);
+  }
+
+  /* منطقة الكروت تسكرول */
+  #wallet .wallet-cards-container {
+    max-height: calc(75vh - 90px); /* يطابق max-height حق .phone-screen تقريبًا */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding-bottom: 80px !important;
+  }
+}
+
 
